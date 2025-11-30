@@ -17,67 +17,35 @@ interface refreshTokenType {
 }
 
 interface accessTokenType {
-  token: string;
+  access: string;
 }
 
 type tokenType = accessTokenType & refreshTokenType;
 
-export const AuthUser = (data: authUserForm): Promise<authUserReturn> => {
-  return axios.post(BASE_URL + '/user/login/', data, {
-    headers: {
-      // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-      'content-type': 'application/json',
-    },
-  });
+export const authUser = (data: authUserForm): Promise<authUserReturn> => {
+  return axios.post(BASE_URL + '/user/login/', data);
 };
 
-export const RegUser = ({
+export const regUser = ({
   email,
   password,
 }: authUserForm): Promise<authUserReturn> => {
-  return axios.post(
-    BASE_URL + '/user/signup/',
-    { email, password, username: email },
-    {
-      headers: {
-        // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-        'content-type': 'application/json',
-      },
-    },
-  );
+  return axios.post(BASE_URL + '/user/signup/', {
+    email,
+    password,
+    username: email,
+  });
 };
 
 export const getToken = async ({
   email,
   password,
 }: authUserForm): Promise<tokenType> => {
-  const res = await axios.post(
-    BASE_URL + '/user/token/',
-    { email, password },
-    {
-      headers: {
-        // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-        'content-type': 'application/json',
-      },
-    },
-  );
-  return res.data;
-};
-//tokensType
-
-export const refreshToken = async (
-  refresh: refreshTokenType,
-): Promise<refreshTokenType> => {
-  const res = await axios
-    .post(
-      BASE_URL + '/user/token/refresh/',
-      { refresh },
-      {
-        headers: {
-          // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-          'content-type': 'application/json',
-        },
-      });
+  const res = await axios.post(BASE_URL + '/user/token/', { email, password });
   return res.data;
 };
 
+export const refreshToken = async (refresh: string): Promise<tokenType> => {
+  const res = await axios.post(BASE_URL + '/user/token/refresh/', { refresh });
+  return res.data;
+};

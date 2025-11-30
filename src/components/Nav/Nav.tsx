@@ -4,21 +4,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './nav.module.css';
 import { useState } from 'react';
-import { useAppDispatch } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { logout } from '../../store/features/authSlice';
 import { useRouter } from 'next/navigation';
 
 export default function Nav() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-
+  const user = useAppSelector((state) => state.auth.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  function handleLogout(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+  function handleLogout(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) {
     e.preventDefault();
     dispatch(logout());
     router.push('/auth/signIn');
@@ -50,20 +50,27 @@ export default function Nav() {
                 Главное
               </Link>
             </li>
-            <li className={styles.menu__item}>
-              <Link href="/music/categories/2" className={styles.menu__link}>
-                Мои треки
-              </Link>
-            </li>
-            <li className={styles.menu__item}>
-              <Link
-                onClick={handleLogout}
-                href="/auth/signIn"
-                className={styles.menu__link}
-              >
-                Выйти
-              </Link>
-            </li>
+            {user && (
+              <li className={styles.menu__item}>
+                <Link href="/music/favorite" className={styles.menu__link}>
+                  Мои треки
+                </Link>
+              </li>
+            )}
+            {user && (
+              <li className={styles.menu__item}>
+                <p onClick={handleLogout} className={styles.menu__link}>
+                  Выйти
+                </p>
+              </li>
+            )}
+            {!user && (
+              <li className={styles.menu__item}>
+                <Link href="/auth/signIn" className={styles.menu__link}>
+                  Войти
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       ) : null}

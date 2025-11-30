@@ -263,6 +263,29 @@
   margin-left: 28.5px;
 }
 
+.trackPlay__liked { 
+  width: 14px;
+  height: 12px;
+  fill: #B672FF;
+  stroke: #B672FF;
+  animation: pulse 0.5s ease-in-out forwards;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2); 
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1); 
+    opacity: 1;
+  }
+}
+
 .trackPlay__dislikeSvg {
   width: 14.34px;
   height: 13px;

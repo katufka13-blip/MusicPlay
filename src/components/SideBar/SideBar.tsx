@@ -22,7 +22,7 @@ export default function SideBar() {
   return (
     <div className={styles.main__sidebar}>
       <div className={styles.sidebar__personal}>
-        <p className={styles.sidebar__personalName}>{user}</p>
+        <p className={styles.sidebar__personalName}>{user || 'Пользователь'}</p>
         <Link onClick={handleLogout} href="/auth/signIn">
           <div className={styles.sidebar__icon}>
             <svg>

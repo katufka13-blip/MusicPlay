@@ -6,11 +6,18 @@ import Track from '../Track/Track';
 import { TrackTypes } from '../../sharedTypes/shared.Types';
 
 interface CenterBLockProps {
-  tracks:TrackTypes[],
-  title: string
+  tracks: TrackTypes[];
+  title: string;
+  errorRes: string | null;
+  isLoading: boolean;
 }
 
-export default function CenterBlock({tracks, title}:CenterBLockProps) {
+export default function CenterBlock({
+  tracks,
+  title,
+  errorRes,
+  isLoading,
+}: CenterBLockProps) {
   return (
     <div className={styles.centerblock}>
       <Search />
@@ -34,9 +41,15 @@ export default function CenterBlock({tracks, title}:CenterBLockProps) {
           </div>
         </div>
         <div className={styles.content__playlist}>
-          {tracks.map((track) => (
-            <Track key={track._id} track={track} playList={tracks}/>
-          ))}
+          {errorRes ? (
+            errorRes
+          ) : isLoading ? (
+            <span style={{ color: 'white' }}>Загрузка...</span>
+          ) : (
+            tracks.map((track) => (
+              <Track key={track._id} track={track} playList={tracks} />
+            ))
+          )}
         </div>
       </div>
     </div>

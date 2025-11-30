@@ -8,15 +8,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   user: string;
-  token: string | null;
-  refresh: string | null;
+  access: string;
+  refresh: string;
   isAuthenticated: boolean;
 }
 
 const initialState: AuthState = {
-  user: "",
-  token: null,
-  refresh: null,
+  user: '',
+  access: '',
+  refresh: '',
   isAuthenticated: false,
 };
 
@@ -28,13 +28,13 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
 
-      localStorage.setItem('userData', JSON.stringify(action.payload));
+      localStorage.setItem('user', action.payload);
     },
     setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
+      state.access = action.payload;
       state.isAuthenticated = true;
 
-      localStorage.setItem('userToken', action.payload);
+      localStorage.setItem('access', action.payload);
     },
     setRefreshToken: (state, action: PayloadAction<string>) => {
       state.refresh = action.payload;
@@ -43,17 +43,17 @@ const authSlice = createSlice({
       localStorage.setItem('refresh', action.payload);
     },
     logout: (state) => {
-      state.user = "";
-      state.token = null;
-      state.refresh = null;
+      state.user = '';
+      state.access = '';
+      state.refresh = '';
       state.isAuthenticated = false;
 
-      localStorage.removeItem('userData');
-      localStorage.removeItem('userToken');
+      localStorage.removeItem('user');
+      localStorage.removeItem('access');
       localStorage.removeItem('refresh');
     },
   },
 });
 
 export const { setUser, setToken, logout, setRefreshToken } = authSlice.actions;
-export const authSliceReducer =  authSlice.reducer;
+export const authSliceReducer = authSlice.reducer;

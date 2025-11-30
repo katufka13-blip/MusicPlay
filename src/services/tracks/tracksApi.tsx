@@ -2,11 +2,20 @@ import axios from 'axios';
 import { BASE_URL } from '../constants';
 import { CategoryType, TrackTypes } from '../../sharedTypes/shared.Types';
 
-const access =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwOTcxMjcxLCJpYXQiOjE2OTA5NjAxMzEsImp0aSI6ImE4YzQ5NDNmOWNmNTRlZjI5NmFmNTMyOWUwODM4YWQ5IiwidXNlcl9pZCI6NzkyfQ.5n8YHTjsgAnYnc4gioyV1wPnxM2D16PS6c9kNhC-JoE';
-
 export const getTracks = async (): Promise<TrackTypes[]> => {
-  const res = await axios.get(BASE_URL + '/catalog/track/all/', {
+  const res = await axios.get(BASE_URL + '/catalog/track/all/');
+  return res.data.data;
+};
+
+export const getTracksId = async (id: string): Promise<CategoryType> => {
+  const res = await axios.get(BASE_URL + `/catalog/selection/${id}/`, {});
+  return res.data.data;
+};
+
+export const getFavoriteTracks = async (
+  access: string,
+): Promise<TrackTypes[]> => {
+  const res = await axios.get(BASE_URL + `/catalog/track/favorite/all/`, {
     headers: {
       Authorization: `Bearer ${access}`,
     },
@@ -14,7 +23,22 @@ export const getTracks = async (): Promise<TrackTypes[]> => {
   return res.data.data;
 };
 
-export const getTracksId = async (id: string): Promise<CategoryType> => {
-  const res = await axios.get(BASE_URL + `/catalog/selection/${id}/`, {});
-  return res.data.data;
+export const addLike = (access: string, id: number) => {
+  return axios.post(
+    BASE_URL + `/catalog/track/${id}/favorite/`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${access}`,
+      },
+    },
+  );
+};
+
+export const removeLike = (access: string, id: number) => {
+  return axios.delete(BASE_URL + `/catalog/track/${id}/favorite/`, {
+    headers: {
+      Authorization: `Bearer ${access}`,
+    },
+  });
 };

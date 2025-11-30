@@ -49,7 +49,7 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: 17px;
-   position: relative;
+  position: relative;
 }
 
 .track__titleSvg {
@@ -106,12 +106,40 @@
   color: #696969;
 }
 
+.track__time {
+cursor: pointer;
+}
+
 .track__timeSvg {
   width: 14px;
   height: 12px;
   margin-right: 17px;
   fill: transparent;
   stroke: #696969;
+}
+
+.trackPlay__liked { 
+  width: 14px;
+  height: 12px;
+  margin-right: 17px;
+  fill: #B672FF;
+  stroke: #B672FF;
+  animation: pulse 0.5s ease-in-out forwards;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2); 
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1); 
+    opacity: 1;
+  }
 }
 
 .track__timeText {
@@ -148,5 +176,11 @@
   background-color: #b672ff;
   border-radius: 8px;
   display: block;
+}
 
+.errorContainer{
+    display: block;
+  visibility: visible;
+  font-size: 12px;
+  color: red;
 }
