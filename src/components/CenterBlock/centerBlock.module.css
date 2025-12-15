@@ -4,6 +4,17 @@
   -ms-flex-positive: 3;
   flex-grow: 3;
   padding: 20px 40px 20px 111px;
+      &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(75, 73, 73, 1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+  }
 }
 
 .centerblock__h2 {

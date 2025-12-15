@@ -77,3 +77,86 @@ export default function Nav() {
     </nav>
   );
 }
+// return (
+//     <div className={styles.centerblock__filter}>
+//       <div className={styles.filter__title}>Искать по:</div>
+
+//       {/* Фильтр по исполнителю */}
+//       <div
+//         className={classNames(styles.filter__button, {
+//           [styles.active]: isAuthorModalOpen,
+//         })}
+//         onClick={() => {
+//           if (!isAuthorModalOpen) {
+//             closeAllModals();
+//             setIsAuthorModalOpen(true);
+//           } else {
+//             setIsAuthorModalOpen(false);
+//           }
+//         }}
+//       >
+//         {getButtonText('author')}
+//         {isAuthorModalOpen && (
+//           <FilterItem
+//             items={authors} //  
+//             onSelectItem={handleSelectAuthor}
+//             // styles={{}} // Пропсы для стилизации FilterItem
+//           />
+//         )}
+//       </div>
+
+//       {/* Фильтр по году выпуска */}
+//       <div
+//         className={classNames(styles.filter__button, {
+//           [styles.active]: isYearModalOpen,
+//         })}
+//         onClick={() => {
+//           if (!isYearModalOpen) {
+//             closeAllModals();
+//             setIsYearModalOpen(true);
+//           } else {
+//             setIsYearModalOpen(false);
+//           }
+//         }}
+//       >
+//         {getButtonText('year')}
+//         {isYearModalOpen && (
+//           <FilterItem
+//             items={yearItemsForFilter} // Массив строк
+//             onSelectItem={handleSelectYear} // Ожидает строку
+//           />
+//         )}
+//       </div>
+
+//       {/* Фильтр по жанру */}
+//       <div
+//         className={classNames(styles.filter__button, {
+//           [styles.active]: isGenreModalOpen,
+//         })}
+//         onClick={() => {
+//           if (!isGenreModalOpen) {
+//             closeAllModals();
+//             setIsGenreModalOpen(true);
+//           } else {
+//             setIsGenreModalOpen(false);
+//           }
+//         }}
+//       >
+//         {getButtonText('genre')}
+//         {isGenreModalOpen && (
+//           <FilterItem
+//             items={genres} // Массив строк
+//             onSelectItem={handleSelectGenre} // Ожидает строку
+//           />
+//         )}
+//       </div>
+
+//       {/* Кнопка сброса фильтров */}
+//       {(selectedAuthor || selectedYear || selectedGenre) && ( // Показываем кнопку, только если есть активные фильтры
+//         <button onClick={handleResetFilters} className={styles.resetFiltersButton}>
+//           Сбросить фильтры
+//         </button>
+//       )}
+//     </div>
+//   );
+// }

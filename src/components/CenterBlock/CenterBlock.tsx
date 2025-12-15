@@ -1,9 +1,13 @@
+'use client';
+
 import styles from './centerBlock.module.css';
 import Search from '../Search/Search';
 import Filter from '../Filter/Filter';
 import classNames from 'classnames';
 import Track from '../Track/Track';
 import { TrackTypes } from '../../sharedTypes/shared.Types';
+import React from 'react';
+import { data } from '../../data';
 
 interface CenterBLockProps {
   tracks: TrackTypes[];
@@ -22,7 +26,7 @@ export default function CenterBlock({
     <div className={styles.centerblock}>
       <Search />
       <h2 className={styles.centerblock__h2}>{title}</h2>
-      <Filter tracks={tracks} />
+      <Filter tracks={data} />
       <div className={styles.centerblock__content}>
         <div className={styles.content__title}>
           <div className={classNames(styles.playlistTitle__col, styles.col01)}>
@@ -45,6 +49,8 @@ export default function CenterBlock({
             errorRes
           ) : isLoading ? (
             <span style={{ color: 'white' }}>Загрузка...</span>
+          ) : tracks.length === 0 ? (
+            <span style={{ color: 'white' }}>Нет треков для отображения.</span>
           ) : (
             tracks.map((track) => (
               <Track key={track._id} track={track} playList={tracks} />
