@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TrackTypes } from '../../sharedTypes/shared.Types';
-import { applyFilters, applySorting } from '../../utils/applyFilters';
+import { applyFilters } from '../../utils/applyFilters';
 
 export type initialStateType = {
   currentTrack: TrackTypes | null;
@@ -91,7 +91,7 @@ const trackSlice = createSlice({
 
     setAllTracks: (state, action: PayloadAction<TrackTypes[]>) => {
       state.allTracks = action.payload;
-      state.filteredTracks = applyFilters(state);
+      state.filteredTracks = applyFilters(state, state.filters.years);
     },
 
     setFavoriteTracks: (state, action: PayloadAction<TrackTypes[]>) => {
@@ -125,15 +125,12 @@ const trackSlice = createSlice({
       } else {
         state.filters.authors = [...state.filters.authors, author];
       }
-      state.filteredTracks = applyFilters(state);
+      state.filteredTracks = applyFilters(state, state.filters.years);
     },
 
     setFilterYear: (state, action: PayloadAction<string>) => {
       state.filters.years = action.payload;
-      state.filteredTracks = applySorting(
-        state.filteredTracks,
-        state.filters.years,
-      );
+      state.filteredTracks = applyFilters(state, state.filters.years);
     },
 
     setFilterGenre: (state, action: PayloadAction<string>) => {
@@ -147,7 +144,7 @@ const trackSlice = createSlice({
         state.filters.genres.push(genres);
       }
 
-      state.filteredTracks = applyFilters(state);
+      state.filteredTracks = applyFilters(state, state.filters.years);
     },
 
     resetFilters: (state) => {
@@ -156,18 +153,18 @@ const trackSlice = createSlice({
         years: 'По умолчанию',
         genres: [],
       };
-      state.searchInput = '';
-      state.filteredTracks = applyFilters(state);
+      state.searchInput = ''; 
+      state.filteredTracks = applyFilters(state, state.filters.years); 
     },
 
     setSearchInput: (state, action: PayloadAction<string>) => {
       state.searchInput = action.payload;
-      state.filteredTracks = applyFilters(state);
+      state.filteredTracks = applyFilters(state, state.filters.years);
     },
 
     clearSearchInput: (state) => {
       state.searchInput = '';
-      state.filteredTracks = applyFilters(state);
+      state.filteredTracks = applyFilters(state, state.filters.years);
     },
   },
 });

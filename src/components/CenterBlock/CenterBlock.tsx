@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import Track from '../Track/Track';
 import { TrackTypes } from '../../sharedTypes/shared.Types';
 import React from 'react';
-import { data } from '../../data';
+import { useAppSelector } from '../../store/store';
 
 interface CenterBLockProps {
   tracks: TrackTypes[];
@@ -22,11 +22,13 @@ export default function CenterBlock({
   errorRes,
   isLoading,
 }: CenterBLockProps) {
+  const { allTracks } = useAppSelector((state) => state.tracks);
+
   return (
     <div className={styles.centerblock}>
       <Search />
       <h2 className={styles.centerblock__h2}>{title}</h2>
-      <Filter tracks={data} />
+      <Filter tracks={allTracks} />
       <div className={styles.centerblock__content}>
         <div className={styles.content__title}>
           <div className={classNames(styles.playlistTitle__col, styles.col01)}>

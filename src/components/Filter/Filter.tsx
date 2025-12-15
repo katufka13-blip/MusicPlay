@@ -1,13 +1,11 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import styles from './filter.module.css';
-
 import { getUniqueValueByKey } from '../../utils/helpers';
 import { TrackTypes } from '../../sharedTypes/shared.Types';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../store/store';
-
 import FilterItem from '../FilterItem/FilterItem';
 import {
   resetFilters,
@@ -34,7 +32,7 @@ export default function Filter({ tracks }: FilterProps) {
   };
 
   const authors = getUniqueValueByKey(tracks, 'author');
-  const genre = getUniqueValueByKey(tracks, 'genre');
+  const genres = getUniqueValueByKey(tracks, 'genre');
 
   const yearFilterOptions = [
     { label: 'По умолчанию', value: 'По умолчанию' },
@@ -179,7 +177,7 @@ export default function Filter({ tracks }: FilterProps) {
         )}
         {isGenreModalOpen && (
           <FilterItem
-            items={[...genre]}
+            items={[...genres]}
             onSelectItem={(selectedGenre) => {
               handleSelectGenre(selectedGenre);
             }}
