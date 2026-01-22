@@ -5,17 +5,18 @@ import CenterBlock from '../../../components/CenterBlock/CenterBlock';
 import { useAppSelector } from '../../../store/store';
 
 export default function Home() {
-  const { fetchError, fetchIsLoading, allTracks } = useAppSelector(
+  const { fetchError, fetchIsLoading, filteredTracks } = useAppSelector(
     (state) => state.tracks,
   );
-  return ( 
+
+  return (
     <>
-        <CenterBlock
-          title={'Треки'}
-          tracks={allTracks}
-          errorRes={fetchError}
-          isLoading={fetchIsLoading}
-        />
+      <CenterBlock
+        title={'Треки'}
+        tracks={filteredTracks}
+        errorRes={fetchError}
+        isLoading={fetchIsLoading}
+      />
     </>
   );
 }

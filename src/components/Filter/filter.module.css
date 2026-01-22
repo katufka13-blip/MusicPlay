@@ -52,3 +52,31 @@
 .filter__button:not(:last-child) {
   margin-right: 10px;
 }
+.filterCount{
+  position: absolute;
+  top: -12px;
+  left: 132px;
+  width: 26px;
+  height: 25.5px;
+  border-radius: 16px;
+  background-color: rgba(182, 114, 255, 1);
+  color:  rgba(255, 255, 255, 1);
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  font: var(--font-montserrat);
+}
+.filterCountG{
+  position: absolute;
+  top: -12px;
+  left: 78px;
+  width: 26px;
+  height: 25.5px;
+  border-radius: 16px;
+  background-color: rgba(182, 114, 255, 1);
+  color:  rgba(255, 255, 255, 1);
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  font: var(--font-montserrat);
+}
