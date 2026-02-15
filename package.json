@@ -16,7 +16,7 @@
     "axios": "^1.13.1",
     "classnames": "^2.5.1",
     "eslint-plugin-react-hooks": "^7.1.0-canary-fd524fe0-20251121",
-    "next": "15.5.4",
+    "next": "15.5.9",
     "react": "^19.1.0",
     "react-dom": "19.1.0",
     "react-loading-skeleton": "^3.5.0",
